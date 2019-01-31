@@ -59,6 +59,37 @@ func main() {
 	flag.DurationVar(&config.UDPTimeout, "udptimeout", 5*time.Minute, "UDP tunnel timeout")
 	flag.Parse()
 
+	if flags.Client == "" {
+		flags.Client = os.Getenv("SS_CLIENT")
+	}
+	if flags.Server == "" {
+		flags.Server = os.Getenv("SS_SERVER")
+	}
+	if flags.Cipher == "" {
+		flags.Cipher = os.Getenv("SS_CIPHER")
+	}
+	if flags.Key == "" {
+		flags.Key = os.Getenv("SS_KEY")
+	}
+	if flags.Password == "" {
+		flags.Password = os.Getenv("SS_PASSWORD")
+	}
+	if flags.Socks == "" {
+		flags.Socks = os.Getenv("SS_SOCKS")
+	}
+	if flags.RedirTCP == "" {
+		flags.RedirTCP = os.Getenv("SS_REDIRTCP")
+	}
+	if flags.RedirTCP6 == "" {
+		flags.RedirTCP6 = os.Getenv("SS_REDIRTCP6")
+	}
+	if flags.TCPTun == "" {
+		flags.TCPTun = os.Getenv("SS_TCPTUN")
+	}
+	if flags.UDPTun == "" {
+		flags.UDPTun = os.Getenv("SS_UDPTUN")
+	}
+
 	if flags.Keygen > 0 {
 		key := make([]byte, flags.Keygen)
 		io.ReadFull(rand.Reader, key)
